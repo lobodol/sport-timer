@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+    <title>My sport chrono</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        html, body {
+            max-width: 320px;
+
+            margin: 0 auto;
+            padding: 0;
+
+            font-family: "Roboto", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+
+        }
+
+        .Countdown {
+            font-weight: 100;
+            text-align: center;
+            font-size: 4em;
+        }
+
+        .button {
+            border-radius: 8px;
+            border: none;
+
+            background: #fed000;
+
+            padding: 10px 20px;
+            margin: 0 5px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: all 200ms
+        }
+
+        .button:active {
+            box-shadow: 0 0 20px #dcb200 inset;
+        }
+
+        .Controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            max-width: 320px;
+        }
+
+        .Control {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+<main id="chrono">
+    <h1 class="Countdown">00:{{countDown.toString().padStart(2, '0')}}</h1>
+
+    <h2 v-if="restList.length">Séries</h2>
+    <ol class="RestList">
+        <li v-for="rest in restList">{{rest.value}}</li>
+    </ol>
+
+
+    <div class="Controls">
+        <button class="Control button" @click="newRest">Repos</button>
+        <button class="Control button" v-show="restList.length" @click="clearAll">Réinit.</button>
+    </div>
+</main>
+<script>
+    const Counter = {
+        data() {
+            return {
+                restInSeconds: 30,
+                restList: [],
+                interval: null,
+                countDown: 0,
+                audio: null,
+            }
+        },
+
+        mounted() {
+            this.countDown = this.restInSeconds
+            this.audio = new AudioContext()
+        },
+
+        methods: {
+            /**
+             * Start rest countdown
+             */
+            newRest() {
+                if (this.interval) {
+                    this.restEnded()
+                }
+
+                this.interval = setInterval(() => {
+                    this.countDown--
+
+                    if (this.countDown < 4 && this.countDown > 0) {
+                        this.beep(400)
+                    } else if (this.countDown === 0) {
+                        this.restEnded()
+                    }
+                }, 1000)
+            },
+
+            restEnded() {
+                clearInterval(this.interval)
+
+                const value = this.restInSeconds - this.countDown
+                this.interval = null
+                this.countDown = this.restInSeconds
+                this.restList.push({value: value + ' s'})
+
+                window.navigator.vibrate([200, 30, 200, 30, 200])
+
+                this.beep(500)
+            },
+
+            /**
+             * Clear all entries
+             */
+            clearAll() {
+                this.restEnded()
+                this.restList = []
+            },
+
+            /**
+             * Emit a 500 ms long sine sound at the given frequency
+             *
+             * @param {number} frequency
+             */
+            beep(frequency) {
+                const duration = 500
+                const oscillator = this.audio.createOscillator()
+                const gain = this.audio.createGain()
+
+                oscillator.connect(gain)
+                oscillator.frequency.value = frequency
+                oscillator.type = "sine"
+
+                gain.connect(this.audio.destination)
+                gain.gain.value = 100 * 0.01
+
+                oscillator.start(this.audio.currentTime)
+                oscillator.stop(this.audio.currentTime + duration * 0.001)
+            }
+
+        }
+    }
+
+    Vue.createApp(Counter).mount('#chrono')
+</script>
+</body>
+</html>
