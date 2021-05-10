@@ -67,7 +67,7 @@
 </head>
 <body>
 <main id="chrono">
-    <h1 class="Countdown">00:{{countDown.toString().padStart(2, '0')}}</h1>
+    <h1 class="Countdown">{{ formatDuration(countDown) }}</h1>
 
     <h2 v-if="restList.length">Séries</h2>
     <ol class="RestList">
@@ -94,10 +94,19 @@
 
         mounted() {
             this.countDown = this.restInSeconds
-            this.audio = new AudioContext()
+            this.audio     = new AudioContext()
         },
 
         methods: {
+            /**
+             * Format given duration into a string like 00:30
+             *
+             * @param {number} duration
+             */
+            formatDuration(duration) {
+                return '00:' + duration.toString().padStart(2, '0')
+            },
+
             /**
              * Start rest countdown
              */
@@ -158,7 +167,6 @@
                 oscillator.start(this.audio.currentTime)
                 oscillator.stop(this.audio.currentTime + duration * 0.001)
             }
-
         }
     }
 
