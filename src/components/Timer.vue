@@ -61,6 +61,10 @@ function formatDuration(duration: number): string {
  * Start countdown
  */
 function start(): void {
+  if (timer !== null) {
+    clearInterval(timer)
+  }
+
   timer = setInterval(() => {
     countDown.value--
 
@@ -90,6 +94,8 @@ function reset() {
 }
 
 watchEffect(() => {
+  countDown.value = props.duration
+
   running.value ? start() : reset()
 })
 </script>
