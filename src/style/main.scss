@@ -1,0 +1,28 @@
+@use 'variables';
+
+html,
+body {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #fed000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 200ms;
+
+  &:active {
+    box-shadow: 0 0 20px #dcb200 inset;
+  }
+}
