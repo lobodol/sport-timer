@@ -16,12 +16,14 @@
 
   <Series :count="series"/>
 
-  <!-- Start timer -->
-  <button v-if="!running" @click="running = true">Start</button>
-  <!-- Stop timer -->
-  <button v-else @click="running = false">Stop</button>
-  <!-- Reset timer -->
-  <button v-if="series" @click="reset()">Reset</button>
+  <div class="Controls">
+    <!-- Start timer -->
+    <button v-if="!running" @click="running = true">Start</button>
+    <!-- Stop timer -->
+    <button v-else @click="running = false">Stop</button>
+    <!-- Reset timer -->
+    <button v-if="series" @click="reset()">Reset</button>
+  </div>
 </template>
 <script lang="ts" setup>
 import AlternateTimer from '@/components/AlternateTimer.vue'

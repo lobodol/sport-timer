@@ -10,16 +10,16 @@
 
   <p v-if="seriesReached()" class="Exercice__EndMessage">Bravo 👏 !</p>
 
-  <!-- Start timer -->
-  <button v-if="!running && !seriesReached()" @click="running = true">
-    Repos 🧘
-  </button>
-
-  <!-- Stop timer -->
-  <button v-else @click="running = false">Stop</button>
-
-  <!-- Stop timer and reset series count -->
-  <button v-if="series" @click="reset()">Reset</button>
+  <div class="Controls">
+    <!-- Start timer -->
+    <button v-if="!running && !seriesReached()" @click="running = true">
+      Repos 🧘
+    </button>
+    <!-- Stop timer -->
+    <button v-else @click="running = false">Stop</button>
+    <!-- Stop timer and reset series count -->
+    <button v-if="series" @click="reset()">Reset</button>
+  </div>
 </template>
 <script lang="ts" setup>
 import Timer from '@/components/Timer.vue'
