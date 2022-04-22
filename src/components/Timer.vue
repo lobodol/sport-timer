@@ -18,7 +18,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, defineProps, ref, watchEffect } from 'vue'
+import {computed, defineProps, onUnmounted, ref, watchEffect} from 'vue'
 import { beep } from "@/Audio"
 
 const props = withDefaults(defineProps<{
@@ -77,7 +77,7 @@ function start(): void {
 
       emits('ended')
     }
-  }, 1000)
+  }, 300)
 }
 
 /**
@@ -92,6 +92,8 @@ function reset() {
   // Reset countdown
   countDown.value = props.duration
 }
+
+onUnmounted(reset)
 
 watchEffect(() => {
   countDown.value = props.duration
