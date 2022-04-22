@@ -14,7 +14,7 @@ const props = defineProps<{
   /**
    * Objectif count to reach if defined
    */
-  objectif: number | undefined
+  objectif?: number
 }>()
 </script>
 

@@ -28,8 +28,8 @@ import Series from '@/components/Series.vue'
 
 const props = withDefaults(
   defineProps<{
-    restDuration: number | undefined
-    series: number | undefined
+    restDuration?: number
+    series?: number
   }>(),
   {
     restDuration: 30,

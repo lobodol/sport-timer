@@ -27,7 +27,7 @@ const props = defineProps<{
   /**
    * Message displayed when iterations count is defined and reached
    */
-  endMessage: string | undefined
+  endMessage?: string
 
   /**
    * Message displayed during duration1 countdown
@@ -42,7 +42,7 @@ const props = defineProps<{
   /**
    * Infinite alternance if undefined
    */
-  iterations: number | undefined
+  iterations?: number
 
   modelValue: boolean
 }>()

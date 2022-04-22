@@ -31,7 +31,7 @@ import { ref } from 'vue'
 import Series from '@/components/Series.vue'
 
 const props = defineProps<{
-  series: number | undefined
+  series?: number
 }>()
 const running = ref<boolean>(false)
 const exerciceDuration = 45
