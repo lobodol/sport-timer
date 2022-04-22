@@ -1,0 +1,8 @@
+FROM openresty/openresty:alpine as deploy
+
+COPY openresty/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+COPY openresty/conf.d /etc/nginx/conf.d
+
+COPY ./dist/ /var/www/html/pwa/
+
+EXPOSE 80
