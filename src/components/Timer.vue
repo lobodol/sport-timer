@@ -77,7 +77,7 @@ function start(): void {
 
       emits('ended')
     }
-  }, 300)
+  }, 1000)
 }
 
 /**
