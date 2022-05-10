@@ -18,7 +18,7 @@
 
     <Chair v-if="exercice === 'chair'"/>
     <Exercice v-if="exercice === 'exercice'"/>
-    <Timer v-if="exercice === 'end'" :duration="60" @ended="exercice = undefined" :model-value="true"/>
+    <Timer v-if="exercice === 'end'" :duration="60" @ended="exercice = 'exercice'" :model-value="true"/>
   </main>
 </template>
 <script lang="ts" setup>
