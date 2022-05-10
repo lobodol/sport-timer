@@ -16,7 +16,7 @@
       Repos 🧘
     </button>
     <!-- Stop timer -->
-    <button v-else @click="running = false">Stop</button>
+    <button v-else @click="running = false">Annuler</button>
     <!-- Stop timer and reset series count -->
     <button v-if="series" @click="reset()">Reset</button>
   </div>
