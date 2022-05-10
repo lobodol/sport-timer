@@ -18,18 +18,21 @@
   </div>
 </template>
 <script lang="ts" setup>
-import {computed, defineProps, onUnmounted, ref, watchEffect} from 'vue'
-import { beep } from "@/Audio"
+import { computed, defineProps, onUnmounted, ref, watchEffect } from 'vue'
+import { beep } from '@/Audio'
 
-const props = withDefaults(defineProps<{
-  /**
-   * Countdown duration in seconds
-   */
-  duration: number
-  modelValue: boolean
-}>(), {
-  duration: 30
-})
+const props = withDefaults(
+  defineProps<{
+    /**
+     * Countdown duration in seconds
+     */
+    duration: number
+    modelValue: boolean
+  }>(),
+  {
+    duration: 30,
+  }
+)
 
 const running = computed({
   get: (): boolean => props.modelValue,
@@ -48,13 +51,20 @@ const countDown = ref<number>(props.duration)
 const strokeOffset = computed((): number => {
   return ((countDown.value - props.duration) / props.duration) * 314
 })
-let timer: number|null = null
+let timer: number | null = null
 
 /**
  * Format given duration into a string like 00:30
  */
 function formatDuration(duration: number): string {
-  return '00:' + duration.toString().padStart(2, '0')
+  const minutes = Math.floor(duration / 60)
+  const seconds = duration - minutes * 60
+
+  return prefixNumber(minutes) + ':' + prefixNumber(seconds)
+}
+
+function prefixNumber(value: number, prefix: string | undefined = '0'): string {
+  return value.toString().padStart(2, prefix)
 }
 
 /**
@@ -115,7 +125,6 @@ watchEffect(() => {
     transform-origin: center;
     stroke-dasharray: 314px;
     stroke-dashoffset: 0;
-
   }
 }
 </style>
