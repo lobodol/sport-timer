@@ -3,31 +3,36 @@
     <nav class="App__Menu">
       <ol class="App__MenuList">
         <li class="App__MenuItem">
-          <a href="#" class="App__MenuLink" @click="exercice = 'chair'">Chaise</a>
+          <a href="#" class="App__MenuLink" @click="exercise = 'chair'">Chaise</a>
         </li>
         <li class="App__MenuItem">
-          <a href="#" class="App__MenuLink" @click="exercice = 'exercice'">Exercice</a>
+          <a href="#" class="App__MenuLink" @click="exercise = 'exercise'">Exercice</a>
         </li>
         <li class="App__MenuItem">
-          <a href="#" class="App__MenuLink" @click="exercice = 'end'">Fin d’exercice</a>
+          <a href="#" class="App__MenuLink" @click="exercise = 'end'">Fin d’exercice</a>
         </li>
       </ol>
     </nav>
 
-    <h1 v-if="exercice === undefined">Home workout 🏋️</h1>
+    <h1 v-if="exercise === undefined">Home workout 🏋️</h1>
 
-    <Chair v-if="exercice === 'chair'"/>
-    <Exercice v-if="exercice === 'exercice'"/>
-    <Timer v-if="exercice === 'end'" :duration="60" @ended="exercice = 'exercice'" :model-value="true"/>
+    <Chair v-if="exercise === 'chair'" />
+    <Exercise v-if="exercise === 'exercise'" />
+    <Timer
+      v-if="exercise === 'end'"
+      :duration="60"
+      :model-value="true"
+      @ended="exercise = 'exercise'"
+    />
   </main>
 </template>
 <script lang="ts" setup>
 import Chair from '@/components/Chair.vue'
 import { ref } from 'vue'
-import Exercice from '@/components/Exercice.vue'
+import Exercise from '@/components/Exercise.vue'
 import Timer from '@/components/Timer.vue'
 
-const exercice = ref<string | undefined>(undefined)
+const exercise = ref<string | undefined>(undefined)
 </script>
 
 <style lang="scss" scoped>
@@ -35,19 +40,19 @@ const exercice = ref<string | undefined>(undefined)
   padding: 10px;
 
   &__MenuList {
-    list-style: none;
     display: flex;
     flex-direction: row;
     gap: 10px;
     padding: 0;
+    list-style: none;
   }
 
   &__MenuLink {
-    text-decoration: none;
-    color: black;
     padding: 10px;
-    font-weight: 700;
     border-bottom: solid 2px var(--main-color);
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
   }
 }
 </style>

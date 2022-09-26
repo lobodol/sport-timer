@@ -2,12 +2,12 @@
   <Timer
     v-model="running"
     :duration="props.restDuration"
-    class="Exercice__Timer"
+    class="Exercise__Timer"
   />
 
-  <Series class="Exercice__Series" :count="series" :objectif="props.series" />
+  <Series class="Exercise__Series" :count="series" :objectif="props.series" />
 
-  <p v-if="seriesReached()" class="Exercice__EndMessage">Bravo 👏 !</p>
+  <p v-if="seriesReached()" class="Exercise__EndMessage">Bravo 👏 !</p>
 
   <div class="Controls">
     <!-- Start timer -->
@@ -59,7 +59,7 @@ function reset(): void {
 </script>
 
 <style lang="scss" scoped>
-.Exercice {
+.Exercise {
   &__EndMessage {
     font-size: 2em;
     text-align: center;
