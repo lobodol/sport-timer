@@ -1,7 +1,12 @@
 <template>
+  <label for="restDuration">Temps de récupération</label>
+  <select v-model="restDuration" :disabled="running">
+    <option v-for="option in restDurations" :value="option">{{ option }}&nbsp;sec</option>
+  </select>
+
   <Timer
     v-model="running"
-    :duration="props.restDuration"
+    :duration="restDuration"
     class="Exercise__Timer"
   />
 
@@ -34,7 +39,8 @@ const props = withDefaults(
 )
 const series = ref<number>(0)
 const running = ref<boolean>(false)
-
+const restDurations = [30, 45, 60]
+const restDuration = ref<number>(props.restDuration)
 function seriesReached(): boolean {
   return props.series !== undefined && series.value === props.series
 }
