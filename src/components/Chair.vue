@@ -14,7 +14,7 @@
     @update:iterations="(i) => (series = i)"
   />
 
-  <Series :count="series"/>
+  <Series :count="series" />
 
   <div class="Controls">
     <!-- Start timer -->
@@ -48,14 +48,6 @@ function reset(): void {
 </script>
 
 <style lang="scss" scoped>
-.Chair {
-  &__Message {
-    font-size: 2em;
-    text-align: center;
-    animation: appearIn 500ms ease-in-out forwards;
-  }
-}
-
 // Animation for success message
 @keyframes appearIn {
   from {
@@ -66,6 +58,14 @@ function reset(): void {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+.Chair {
+  &__Message {
+    font-size: 2em;
+    text-align: center;
+    animation: appearIn 500ms ease-in-out forwards;
   }
 }
 </style>
