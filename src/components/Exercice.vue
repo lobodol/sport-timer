@@ -3,7 +3,6 @@
     v-model="running"
     :duration="props.restDuration"
     class="Exercice__Timer"
-    @ended="series++"
   />
 
   <Series class="Exercice__Series" :count="series" :objectif="props.series" />
@@ -12,11 +11,9 @@
 
   <div class="Controls">
     <!-- Start timer -->
-    <button v-if="!running && !seriesReached()" @click="running = true">
-      Repos 🧘
-    </button>
+    <button v-if="!running && !seriesReached()" @click="rest">Repos 🧘</button>
     <!-- Stop timer -->
-    <button v-else @click="running = false">Annuler</button>
+    <button v-else @click="cancel">Annuler</button>
     <!-- Stop timer and reset series count -->
     <button v-if="series" @click="reset()">Reset</button>
   </div>
@@ -40,6 +37,16 @@ const running = ref<boolean>(false)
 
 function seriesReached(): boolean {
   return props.series !== undefined && series.value === props.series
+}
+
+function cancel(): void {
+  running.value = false
+  series.value--
+}
+
+function rest(): void {
+  running.value = true
+  series.value++
 }
 
 /**
