@@ -1,0 +1,22 @@
+@use 'variables' as v;
+
+.Day {
+  &__ExerciseWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-2;
+    margin: v.$spacing 0;
+  }
+
+  &__ExerciseCategory {
+    margin: 0;
+  }
+
+  &__Exercise {
+    border: solid 1px;
+    border-radius: v.$borderRadius;
+    padding: v.$spacing;
+    text-decoration: none;
+    color: black;
+  }
+}
