@@ -24,6 +24,7 @@
       :model-value="true"
       @ended="exercise = 'exercise'"
     />
+    <router-view/>
   </main>
 </template>
 <script lang="ts" setup>
