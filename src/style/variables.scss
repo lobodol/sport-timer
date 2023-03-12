@@ -1,4 +1,15 @@
+@use 'sass:math';
+
 :root {
   --main-color: #fed000;
   --main-color-darken: #dcb200;
 }
+
+$minWidth_tablet: 700px;
+$minWidth_desktop: 1024px;
+$maxWidth: 1200px;
+$spacing: 1rem;
+$spacing-2: math.div($spacing, 2);
+$spacing-4: math.div($spacing, 4);
+$borderRadius: 4px;
+$minWidth: 360px;
