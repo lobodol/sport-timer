@@ -8,15 +8,16 @@
     v-model="running"
     :duration="restDuration"
     class="Exercise__Timer"
+    v-on:ended="timeOut"
   />
 
   <Series class="Exercise__Series" :count="series" :objectif="props.series" />
 
-  <p v-if="seriesReached()" class="Exercise__EndMessage">Bravo 👏 !</p>
+  <p v-if="seriesReached" class="Exercise__EndMessage">Bravo 👏 !</p>
 
   <div class="Controls">
     <!-- Start timer -->
-    <button v-if="!running && !seriesReached()" @click="rest">Repos 🧘</button>
+    <button v-if="!running && !seriesReached" @click="rest">Repos 🧘</button>
     <!-- Stop timer -->
     <button v-else @click="cancel">Annuler</button>
     <!-- Stop timer and reset series count -->
@@ -25,8 +26,20 @@
 </template>
 <script lang="ts" setup>
 import Timer from '@/components/Timer.vue'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import Series from '@/components/Series.vue'
+
+const emits = defineEmits<{
+  /**
+   * Dispatched when the last serie of exercises is reached
+   */
+  (e: 'series:reached', seriesCount: number): void
+
+  /**
+   * Dispatched when the rest time of the last serie is ended
+   */
+  (e: 'ended', seriesCount: number): void
+}>()
 
 const props = withDefaults(
   defineProps<{
@@ -34,15 +47,26 @@ const props = withDefaults(
     series?: number
   }>(),
   {
-    restDuration: 30,
+    restDuration: 60,
   }
 )
 const series = ref<number>(0)
 const running = ref<boolean>(false)
 const restDurations = [30, 45, 60]
 const restDuration = ref<number>(props.restDuration)
-function seriesReached(): boolean {
-  return props.series !== undefined && series.value === props.series
+
+const seriesReached = computed<boolean>(() => {
+  let isReached = props.series !== undefined && series.value >= props.series
+
+  if (isReached) {
+    emits('series:reached', series.value)
+  }
+
+  return isReached
+})
+
+function timeOut(): void {
+  if (seriesReached) emits('ended', series.value)
 }
 
 function cancel(): void {
