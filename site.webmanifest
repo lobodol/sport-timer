@@ -1,6 +1,7 @@
 {
-    "name": "",
+    "name": "My sport timer",
     "short_name": "",
+    "start_url": "https://sport-timer.docker.localhost",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
