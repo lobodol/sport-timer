@@ -114,6 +114,8 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .Timer {
+  width: 50%;
+  margin: auto;
   font-weight: 100;
   font-size: 2em;
   text-align: center;
