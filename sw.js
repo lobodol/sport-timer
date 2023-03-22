@@ -85,10 +85,10 @@ define(['./workbox-148cb7e5'], (function (workbox) { 'use strict';
     "revision": null
   }, {
     "url": "index.html",
-    "revision": "bdfd1ef1f927e66a96c55889de2b6ef8"
+    "revision": "62796d313770ca425f878fc8f970ca61"
   }, {
     "url": "registerSW.js",
-    "revision": "1872c500de691dce40960bb85481de07"
+    "revision": "1e57dc1d53f12eb330b81ba44d0e4bec"
   }, {
     "url": "android-chrome-192x192.png",
     "revision": "ebbd34111a4e60b64756c67c42eee9c1"
@@ -97,7 +97,7 @@ define(['./workbox-148cb7e5'], (function (workbox) { 'use strict';
     "revision": "e811241c4ecf1f239fdf076fcdf841a9"
   }, {
     "url": "manifest.webmanifest",
-    "revision": "d0f71dbb74b112f0e6c161f5a0d5566d"
+    "revision": "5f967c27bd300301001c8502f26be7e6"
   }], {});
   workbox.cleanupOutdatedCaches();
   workbox.registerRoute(new workbox.NavigationRoute(workbox.createHandlerBoundToURL("index.html")));
