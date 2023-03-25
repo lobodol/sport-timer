@@ -10,14 +10,12 @@ export default defineConfig(({ command, mode }) => {
   // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
   const env = loadEnv(mode, process.cwd(), '')
 
-  console.log(mode, env.NODE_ENV)
-
   return {
     // vite config
     define: {
       __APP_ENV__: env.APP_ENV,
     },
-    base: '/sport-timer/',
+    base: env.BASE_URL,
     server: {
       host: '0.0.0.0',
       hmr: {
@@ -39,8 +37,8 @@ export default defineConfig(({ command, mode }) => {
           enabled: true
         },
         manifest: {
-          start_url: env.NODE_ENV === 'production' ? 'https://lobodol.github.io/sport-timer/' : 'https://sport-timer.docker.localhost/sport-timer/',
-          scope: '/sport-timer/',
+          start_url: (env.NODE_ENV === 'production' ? 'https://lobodol.github.io' : 'https://sport-timer.docker.localhost') + env.BASE_URL,
+          scope: env.BASE_URL,
           icons: [
             {
               src: "android-chrome-192x192.png",
