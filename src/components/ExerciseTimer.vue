@@ -1,14 +1,16 @@
 <template>
   <label for="restDuration">Temps de récupération</label>
   <select v-model="restDuration" :disabled="running">
-    <option v-for="option in restDurations" :value="option">{{ option }}&nbsp;sec</option>
+    <option v-for="option in restDurations" :key="option" :value="option">
+      {{ option }}&nbsp;sec
+    </option>
   </select>
 
   <Timer
     v-model="running"
     :duration="restDuration"
     class="Exercise__Timer"
-    v-on:ended="timeOut"
+    @ended="timeOut"
   />
 
   <Series class="Exercise__Series" :count="series" :objectif="props.series" />
@@ -66,7 +68,7 @@ const seriesReached = computed<boolean>(() => {
 })
 
 function timeOut(): void {
-  if (seriesReached) emits('ended', series.value)
+  if (seriesReached.value) emits('ended', series.value)
 }
 
 function cancel(): void {
