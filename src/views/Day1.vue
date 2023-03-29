@@ -14,7 +14,7 @@ const exercises: Array<Exercise> = [
   { title: 'Curl barre', repetitions: 10, series: 4 },
   { title: 'Curl haltères', repetitions: 8, series: 4 },
   { title: 'Curl concentre', repetitions: 12, series: 3 },
-  { title: 'Crunch', repetitions: 20, series: 4 },
-  { title: 'Russian twist', repetitions: 30, series: 1 },
+  { title: 'Crunch', repetitions: 20, series: 4, restDuration: 30 },
+  { title: 'Russian twist', repetitions: 30, series: 1, restDuration: 30 },
 ]
 </script>
