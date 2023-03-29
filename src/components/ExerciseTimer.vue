@@ -1,14 +1,12 @@
 <template>
-  <label for="restDuration">Temps de récupération</label>
-  <select v-model="restDuration" :disabled="running">
-    <option v-for="option in restDurations" :key="option" :value="option">
-      {{ option }}&nbsp;sec
-    </option>
-  </select>
+  <div class="Exercise__Header">
+    <span class="Exercise__HeaderTitle">{{ props.title}}</span>
+    <span class="Exercise__HeaderRepetitions" v-if="props.repetitions">{{ props.repetitions}} répétitions 🔁</span>
+  </div>
 
   <Timer
     v-model="running"
-    :duration="restDuration"
+    :duration="props.restDuration"
     class="Exercise__Timer"
     @ended="timeOut"
   />
@@ -17,14 +15,14 @@
 
   <p v-if="seriesReached" class="Exercise__EndMessage">Bravo 👏 !</p>
 
-  <div class="Controls">
+  <section class="Controls gutter">
     <!-- Start timer -->
-    <button v-if="!running && !seriesReached" @click="rest">Repos 🧘</button>
+    <button v-if="!running && !seriesReached" @click="rest">Répétitions effectuées</button>
     <!-- Stop timer -->
-    <button v-else @click="cancel">Annuler</button>
+    <button v-else @click="cancel" class="button--outlined">Annuler</button>
     <!-- Stop timer and reset series count -->
-    <button v-if="series" @click="reset()">Reset</button>
-  </div>
+    <button v-if="series" @click="reset()" severity="secondary">Reset</button>
+  </section>
 </template>
 <script lang="ts" setup>
 import Timer from '@/components/Timer.vue'
@@ -47,6 +45,8 @@ const props = withDefaults(
   defineProps<{
     restDuration?: number
     series?: number
+    title: string
+    repetitions?: number
   }>(),
   {
     restDuration: 60,
@@ -54,8 +54,6 @@ const props = withDefaults(
 )
 const series = ref<number>(0)
 const running = ref<boolean>(false)
-const restDurations = [30, 45, 60]
-const restDuration = ref<number>(props.restDuration)
 
 const seriesReached = computed<boolean>(() => {
   let isReached = props.series !== undefined && series.value >= props.series
@@ -91,7 +89,25 @@ function reset(): void {
 </script>
 
 <style lang="scss" scoped>
+@use '../style/variables' as v;
+
 .Exercise {
+  &__Header {
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    text-align: center;
+    margin: v.$spacing;
+
+    &Title {
+      font-size: 1.5em;
+    }
+
+    &Repetitions {
+      font-size: 1.2em;
+    }
+  }
+
   &__EndMessage {
     font-size: 2em;
     text-align: center;
