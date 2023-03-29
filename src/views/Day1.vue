@@ -2,18 +2,15 @@
   <h2 class="Day__Title gutter" v-if="!started">💪 Pectoraux, biceps et Abdominaux</h2>
 
   <ExerciseTimer
-    v-if="title && started"
-    :title="title"
-    :repetitions="repetitions"
-    :key="title"
-    :series="series"
-    :rest-duration="restDuration"
+    v-if="started && exercise"
+    v-bind="exercise"
+    :key="exercise.title"
     @ended="() => index++"
   />
 
   <section class="gutter" v-if="!started">
     <ol class="Day__ExerciseWrapper">
-      <li v-for="exercise in exercises" :key="title" class="Day__Exercise">
+      <li v-for="exercise in exercises" :key="exercise.title" class="Day__Exercise">
         {{ exercise.title }}
       </li>
     </ol>
@@ -38,12 +35,9 @@ type Exercise = {
   restDuration?: number
 }
 
-const title = ref<string | undefined>()
-const repetitions = ref<number | undefined>()
-const series = ref<number | undefined>()
-const restDuration = ref<number>(6)
 const started = ref<boolean>(false)
 const index = ref<number>(0)
+const exercise = ref<Exercise|undefined>(undefined)
 
 const exercises: Array<Exercise> = [
   { title: 'Développé couché', repetitions: 10, series: 5 },
@@ -70,16 +64,7 @@ function lastExerciseReached(): boolean {
 }
 
 watchEffect(() => {
-  const exercise = exercises[index.value]
-
-  if (exercise) {
-    title.value = exercise.title
-    repetitions.value = exercise.repetitions
-    series.value = exercise.series
-    restDuration.value = exercise.restDuration || restDuration.value
-  }
-
-  console.log(index.value, exercises.length)
+  exercise.value = exercises[index.value]
 })
 </script>
 
