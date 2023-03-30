@@ -1,7 +1,9 @@
 <template>
   <div class="Exercise__Header">
-    <span class="Exercise__HeaderTitle">{{ props.title}}</span>
-    <span class="Exercise__HeaderRepetitions" v-if="props.repetitions">{{ props.repetitions}} répétitions 🔁</span>
+    <span class="Exercise__HeaderTitle">{{ props.title }}</span>
+    <span v-if="props.repetitions" class="Exercise__HeaderRepetitions"
+      >{{ props.repetitions }} répétitions 🔁</span
+    >
   </div>
 
   <Timer
@@ -17,11 +19,13 @@
 
   <section class="Controls gutter">
     <!-- Start timer -->
-    <button v-if="!running && !seriesReached" @click="rest">Répétitions effectuées</button>
+    <button v-if="!running && !seriesReached" @click="rest">
+      Répétitions effectuées
+    </button>
     <!-- Stop timer -->
-    <button v-else @click="cancel" class="button--outlined">Annuler</button>
+    <button v-else class="button--outlined" @click="cancel">Annuler</button>
     <!-- Stop timer and reset series count -->
-    <button v-if="series" @click="reset()" severity="secondary">Reset</button>
+    <button v-if="series" severity="secondary" @click="reset()">Reset</button>
   </section>
 </template>
 <script lang="ts" setup>
@@ -95,9 +99,9 @@ function reset(): void {
   &__Header {
     display: flex;
     flex-direction: column;
+    margin: v.$spacing;
     font-weight: 700;
     text-align: center;
-    margin: v.$spacing;
 
     &Title {
       font-size: 1.5em;

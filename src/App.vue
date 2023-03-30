@@ -5,6 +5,6 @@
     </h1>
   </header>
   <main class="App">
-    <router-view/>
+    <router-view />
   </main>
 </template>

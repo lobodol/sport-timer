@@ -87,7 +87,8 @@ function rotateDurations(): void {
   // Stop timer if iterations count is reached
   if (iterationsReached()) return
 
-  duration.value = (duration.value === props.duration1) ? props.duration2 : props.duration1
+  duration.value =
+    duration.value === props.duration1 ? props.duration2 : props.duration1
 
   running.value = true
 }

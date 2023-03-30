@@ -34,23 +34,26 @@ export default defineConfig(({ command, mode }) => {
         registerType: 'autoUpdate',
         includeAssets: 'favicon.ico',
         devOptions: {
-          enabled: true
+          enabled: true,
         },
         manifest: {
-          start_url: (env.NODE_ENV === 'production' ? 'https://lobodol.github.io' : 'https://sport-timer.docker.localhost') + env.BASE_URL,
+          start_url:
+            (env.NODE_ENV === 'production'
+              ? 'https://lobodol.github.io'
+              : 'https://sport-timer.docker.localhost') + env.BASE_URL,
           scope: env.BASE_URL,
           icons: [
             {
-              src: "android-chrome-192x192.png",
-              sizes: "192x192",
-              type: "image/png",
+              src: 'android-chrome-192x192.png',
+              sizes: '192x192',
+              type: 'image/png',
             },
             {
-              src: "android-chrome-512x512.png",
-              sizes: "512x512",
-              type: "image/png",
+              src: 'android-chrome-512x512.png',
+              sizes: '512x512',
+              type: 'image/png',
             },
-          ]
+          ],
         },
       }),
       vueI18n({
