@@ -1,5 +1,5 @@
 <template>
-  <h2 v-if="!started" class="Day__Title gutter">{{ props.title }}</h2>
+  <h2 v-if="!started" class="Session__Title gutter">{{ props.title }}</h2>
 
   <ExerciseTimer
     v-if="started && exercise"
@@ -9,13 +9,16 @@
   />
 
   <section v-if="!started" class="gutter">
-    <ol class="Day__ExerciseWrapper">
+    <ol class="Session__ExerciseWrapper">
       <li
         v-for="exercise in props.exercises"
         :key="exercise.title"
-        class="Day__Exercise"
+        class="Session__Exercise"
       >
-        {{ exercise.title }}
+        <span class="Session__ExerciseTitle">{{ exercise.title }}</span>
+        <span class="Session__ExerciseDetails"
+          >{{ exercise.repetitions }} reps &times; {{ exercise.series }}</span
+        >
       </li>
     </ol>
   </section>
@@ -63,9 +66,34 @@ const {
 <style lang="scss" scoped>
 @use '../style/variables' as v;
 
-.Day {
+.Session {
   &__ExerciseWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: v.$spacing-2;
+    margin: v.$spacing 0;
+    padding: v.$spacing-2 v.$spacing-4;
+    border-radius: v.$borderRadius;
+    background: #dadada;
     list-style: none;
+  }
+
+  &__Exercise {
+    display: flex;
+    flex-direction: column;
+    margin: 0 v.$spacing-4;
+    padding: v.$spacing;
+    border-radius: v.$borderRadius;
+    background: white;
+    color: black;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    font-weight: bold;
+    text-decoration: none;
+
+    &Details {
+      font-weight: 300;
+      font-size: 0.9em;
+    }
   }
 }
 
