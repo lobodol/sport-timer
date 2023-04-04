@@ -7,7 +7,8 @@
         r="50"
         fill="none"
         stroke="none"
-        stroke-width="1px"
+        stroke-width="3px"
+        stroke-linecap="round"
         class="Timer__Circle"
         :style="`stroke-dashoffset: ${strokeOffset}`"
       />
