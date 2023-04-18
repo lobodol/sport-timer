@@ -58,7 +58,7 @@ const props = withDefaults(
     series?: number
     title: string
     repetitions?: number
-    image?: unknown
+    image?: string
   }>(),
   {
     restDuration: 60,
