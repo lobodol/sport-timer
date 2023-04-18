@@ -15,6 +15,7 @@
         :key="exercise.title"
         class="Session__Exercise"
       >
+        <img v-if="exercise.image" :src="exercise.image" alt="" class="Session__ExerciseImage">
         <span class="Session__ExerciseTitle">{{ exercise.title }}</span>
         <span class="Session__ExerciseDetails"
           >{{ exercise.repetitions }} reps &times; {{ exercise.series }}</span
@@ -79,8 +80,11 @@ const {
   }
 
   &__Exercise {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-areas:
+      'image title'
+      'image details';
+    grid-template-columns: 40px 1fr;
     margin: 0 v.$spacing-4;
     padding: v.$spacing;
     border-radius: v.$borderRadius;
@@ -90,7 +94,18 @@ const {
     font-weight: bold;
     text-decoration: none;
 
+    &Image {
+      grid-area: image;
+      max-width: 30px;
+      max-height: 30px;
+    }
+
+    &Title {
+      grid-area: title;
+    }
+
     &Details {
+      grid-area: details;
       font-weight: 300;
       font-size: 0.9em;
     }
@@ -98,7 +113,7 @@ const {
 }
 
 .Toolbar {
-  position: sticky;
+  position: fixed;
   right: 0;
   bottom: 0;
   left: 0;
