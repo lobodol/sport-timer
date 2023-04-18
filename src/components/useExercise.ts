@@ -5,6 +5,7 @@ export type Exercise = {
   repetitions: number
   series?: number
   restDuration?: number
+  image?: string
 }
 
 export function useExercise(exercises: Array<Exercise>) {
