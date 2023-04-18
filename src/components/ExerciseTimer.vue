@@ -7,11 +7,13 @@
   </div>
 
   <CircularTimer
+    v-if="running"
     v-model="running"
     :duration="props.restDuration"
     class="Exercise__Timer"
     @ended="timeOut"
   />
+  <img class="Exercise__Image" :src="props.image" alt="" v-else/>
 
   <Series class="Exercise__Series" :count="series" :objectif="props.series" />
 
@@ -51,6 +53,7 @@ const props = withDefaults(
     series?: number
     title: string
     repetitions?: number
+    image?: unknown
   }>(),
   {
     restDuration: 60,
@@ -110,6 +113,13 @@ function reset(): void {
     &Repetitions {
       font-size: 1.2em;
     }
+  }
+
+  &__Image {
+    display: block;
+    margin: auto;
+    max-height: 40vh;
+    max-width: 50vw;
   }
 
   &__EndMessage {
