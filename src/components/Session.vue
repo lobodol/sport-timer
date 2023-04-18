@@ -15,7 +15,12 @@
         :key="exercise.title"
         class="Session__Exercise"
       >
-        <img v-if="exercise.image" :src="exercise.image" alt="" class="Session__ExerciseImage">
+        <img
+          v-if="exercise.image"
+          :src="exercise.image"
+          alt=""
+          class="Session__ExerciseImage"
+        />
         <span class="Session__ExerciseTitle">{{ exercise.title }}</span>
         <span class="Session__ExerciseDetails"
           >{{ exercise.repetitions }} reps &times; {{ exercise.series }}</span

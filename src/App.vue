@@ -13,13 +13,13 @@
 .App__Menu {
   display: flex;
   justify-content: center;
-  background-color: var(--main-color);
   padding: v.$spacing;
+  background-color: var(--main-color);
 
   &Link {
     color: black;
-    font-size: 1.2em;
     font-weight: 600;
+    font-size: 1.2em;
     text-decoration: none;
   }
 }
