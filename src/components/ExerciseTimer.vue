@@ -6,7 +6,7 @@
     >
   </div>
 
-  <Timer
+  <CircularTimer
     v-model="running"
     :duration="props.restDuration"
     class="Exercise__Timer"
@@ -29,7 +29,7 @@
   </section>
 </template>
 <script lang="ts" setup>
-import Timer from '@/components/Timer.vue'
+import CircularTimer from '@/components/CircularTimer.vue'
 import { computed, ref } from 'vue'
 import Series from '@/components/Series.vue'
 

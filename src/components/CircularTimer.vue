@@ -64,7 +64,7 @@ function formatDuration(duration: number): string {
   return prefixNumber(minutes) + ':' + prefixNumber(seconds)
 }
 
-function prefixNumber(value: number, prefix: string | undefined = '0'): string {
+function prefixNumber(value: number, prefix = '0'): string {
   return value.toString().padStart(2, prefix)
 }
 

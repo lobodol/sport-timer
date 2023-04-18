@@ -1,12 +1,16 @@
 <template>
-  <Timer v-model="running" :duration="duration" @ended="rotateDurations()" />
+  <CircularTimer
+    v-model="running"
+    :duration="duration"
+    @ended="rotateDurations()"
+  />
 
   <p v-if="message" class="Message">{{ message }}</p>
 </template>
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import Timer from '@/components/Timer.vue'
+import CircularTimer from '@/components/CircularTimer.vue'
 
 const props = defineProps<{
   /**
