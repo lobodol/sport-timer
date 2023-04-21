@@ -9,24 +9,7 @@
   />
 
   <section v-if="!started" class="gutter">
-    <ol class="Session__ExerciseWrapper">
-      <li
-        v-for="exercise in props.exercises"
-        :key="exercise.title"
-        class="Session__Exercise"
-      >
-        <img
-          v-if="exercise.image"
-          :src="exercise.image"
-          alt=""
-          class="Session__ExerciseImage"
-        />
-        <span class="Session__ExerciseTitle">{{ exercise.title }}</span>
-        <span class="Session__ExerciseDetails"
-          >{{ exercise.repetitions }} reps &times; {{ exercise.series }}</span
-        >
-      </li>
-    </ol>
+    <ExercisesList :exercises="exercises" />
   </section>
 
   <section class="Toolbar">
@@ -52,6 +35,7 @@
 <script lang="ts" setup>
 import { Exercise, useExercise } from '@/components/useExercise'
 import ExerciseTimer from '@/components/ExerciseTimer.vue'
+import ExercisesList from '@/components/ExercisesList.vue'
 
 const props = defineProps<{
   title: string
