@@ -1,6 +1,7 @@
 <template>
   <div class="Series">
-    Séries : {{ props.count }}{{ props.objectif !== undefined ? '/' + props.objectif : '' }}
+    Séries : {{ props.count
+    }}{{ props.objectif !== undefined ? '/' + props.objectif : '' }}
   </div>
 </template>
 

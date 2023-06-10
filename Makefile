@@ -54,7 +54,7 @@ docker.build:
 
 dev.up:
 	@docker-compose up -d --force-recreate
-	@echo "App running at https://${PROJECT_URL}/"
+	@echo "App running at https://${PROJECT_URL}/sport-timer/"
 
 dev: clean docker.pull docker.build dev.up ## Starts dev stack
 

@@ -7,7 +7,8 @@
         r="50"
         fill="none"
         stroke="none"
-        stroke-width="1px"
+        stroke-width="3px"
+        stroke-linecap="round"
         class="Timer__Circle"
         :style="`stroke-dashoffset: ${strokeOffset}`"
       />
@@ -63,7 +64,7 @@ function formatDuration(duration: number): string {
   return prefixNumber(minutes) + ':' + prefixNumber(seconds)
 }
 
-function prefixNumber(value: number, prefix: string | undefined = '0'): string {
+function prefixNumber(value: number, prefix = '0'): string {
   return value.toString().padStart(2, prefix)
 }
 
@@ -114,6 +115,8 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .Timer {
+  width: 50%;
+  margin: auto;
   font-weight: 100;
   font-size: 2em;
   text-align: center;
