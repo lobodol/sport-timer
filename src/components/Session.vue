@@ -6,11 +6,19 @@
     v-bind="exercise"
     :key="exercise.title"
     @ended="next"
+    @series:reached="() => (displayNext = true)"
   />
 
   <section v-if="!started" class="gutter">
     <ExercisesList :exercises="exercises" />
   </section>
+
+  <NextExercise
+    v-if="hasNextExercise()"
+    :exercise="getNextExercise()"
+    :exercises-count="exercises.length"
+    :index="index + 2"
+  />
 
   <section class="Toolbar">
     <button
@@ -36,6 +44,7 @@
 import { Exercise, useExercise } from '@/components/useExercise'
 import ExerciseTimer from '@/components/ExerciseTimer.vue'
 import ExercisesList from '@/components/ExercisesList.vue'
+import NextExercise from '@/components/NextExercise.vue'
 
 const props = defineProps<{
   title: string
@@ -48,8 +57,12 @@ const {
   previous,
   lastExerciseReached,
   firstExercise,
+  hasNextExercise,
+  getNextExercise,
   exercise,
   started,
+  displayNext,
+  index,
 } = useExercise(props.exercises)
 </script>
 

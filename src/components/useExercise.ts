@@ -12,6 +12,15 @@ export function useExercise(exercises: Array<Exercise>) {
   const started = ref<boolean>(false)
   const index = ref<number>(0)
   const exercise = ref<Exercise | undefined>(undefined)
+  const displayNext = ref<boolean>(false)
+
+  function hasNextExercise(): boolean {
+    return (
+      started.value &&
+      displayNext.value &&
+      undefined !== exercises[index.value + 1]
+    )
+  }
 
   function start(): void {
     started.value = true
@@ -19,10 +28,12 @@ export function useExercise(exercises: Array<Exercise>) {
 
   function next(): void {
     index.value++
+    displayNext.value = false
   }
 
   function previous(): void {
     index.value--
+    displayNext.value = false
   }
 
   function lastExerciseReached(): boolean {
@@ -33,6 +44,10 @@ export function useExercise(exercises: Array<Exercise>) {
     return 0 === index.value
   }
 
+  function getNextExercise(): Exercise {
+    return exercises[index.value + 1]
+  }
+
   watchEffect(() => (exercise.value = exercises[index.value]))
 
   return {
@@ -41,7 +56,11 @@ export function useExercise(exercises: Array<Exercise>) {
     previous,
     lastExerciseReached,
     firstExercise,
+    hasNextExercise,
+    getNextExercise,
     exercise,
     started,
+    displayNext,
+    index,
   }
 }
