@@ -12,9 +12,11 @@
         class="ExerciseImage"
       />
       <span class="ExerciseTitle">{{ exercise.title }}</span>
-      <span class="ExerciseDetails"
-        >{{ exercise.repetitions }} reps &times; {{ exercise.series }}</span
-      >
+      <span class="ExerciseDetails">
+        <template v-if="exercise.duration">{{ exercise.duration }}s</template>
+        <template v-else>{{ exercise.repetitions }} reps</template>
+        &times; {{ exercise.series }}
+      </span>
     </li>
   </ol>
 </template>

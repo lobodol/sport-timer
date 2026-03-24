@@ -2,7 +2,8 @@ import { ref, watchEffect } from 'vue'
 
 export type Exercise = {
   title: string
-  repetitions: number
+  repetitions?: number
+  duration?: number
   series?: number
   restDuration?: number
   image?: string
