@@ -1,7 +1,10 @@
 <template>
   <div class="Exercise__Header">
     <span class="Exercise__HeaderTitle">{{ props.title }}</span>
-    <span v-if="props.repetitions" class="Exercise__HeaderRepetitions"
+    <span v-if="props.duration" class="Exercise__HeaderRepetitions"
+      >{{ props.duration }} secondes ⏱</span
+    >
+    <span v-else-if="props.repetitions" class="Exercise__HeaderRepetitions"
       >{{ props.repetitions }} répétitions 🔁</span
     >
   </div>
@@ -58,6 +61,7 @@ const props = withDefaults(
     series?: number
     title: string
     repetitions?: number
+    duration?: number
     image?: string
   }>(),
   {
