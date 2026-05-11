@@ -9,6 +9,7 @@
     <router-link class="HomeLink" to="/day5"
       >🏋️ Dos, épaules et triceps</router-link
     >
+    <router-link class="HomeLink" to="/full-body">🏃 Full-body</router-link>
   </div>
 </template>
 
