@@ -20,7 +20,7 @@ const exercises = [
   },
   { title: 'Rowing horizontal', repetitions: 10, series: 4, image: Rowing },
   { title: 'Shrug haltères', repetitions: 12, series: 3 },
-  { title: 'Développé haltère', repetitions: 12, series: 4 },
+  { title: 'Développé haltère', repetitions: 12, series: 4, image: UpRaise },
   {
     title: 'Élévations latérales',
     repetitions: 10,
@@ -29,11 +29,6 @@ const exercises = [
   },
   { title: 'Oiseau banc incliné', repetitions: 10, series: 3 },
   { title: 'Barre front', repetitions: 10, series: 4, image: Forehead },
-  {
-    title: 'Extensions au-dessus de la tête',
-    repetitions: 10,
-    series: 3,
-    image: UpRaise,
-  },
+  { title: 'Extensions au-dessus de la tête', repetitions: 10, series: 3 },
 ]
 </script>
